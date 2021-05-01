@@ -20,6 +20,10 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully!')
 })
 
+import authRoutes from './routes/auth.js'
+
+app.use('/user', authRoutes)
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
 })
