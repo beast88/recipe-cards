@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const Schema = mongoose.Schema
 
@@ -21,6 +22,10 @@ userSchema.pre('save', async function(next) {
 
 userSchema.methods.matchPasswords = async function(password) {
   return await bcrypt.compare(password, this.password)
+}
+
+userSchema.methods.getToken = function() {
+  return jwt.sign({id: this._id}, 'secret_key', {expiresIn: '1h'})
 }
 
 const User = mongoose.model('User', userSchema)

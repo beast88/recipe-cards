@@ -11,9 +11,7 @@ const register = async (req, res, next) => {
       password
     })
 
-    res.status(201).json({
-      title: 'User added'
-    })
+    sendToken(user, 201, res)
 
   } catch (err) {
     res.status(500).json({
@@ -38,7 +36,7 @@ const login = async (req, res, next) => {
     const user = await User.findOne({ email }).select('+password')
 
     if(!user) {
-      res.status(404).json({
+      res.status(401).json({
         title: 'Invalid credentials',
         error: 'Invalid credentials'
       })
@@ -47,15 +45,13 @@ const login = async (req, res, next) => {
     const isMatch = await user.matchPasswords(password)
 
     if(!isMatch) {
-      res.status(404).json({
+      res.status(401).json({
         title: 'Invalid credentials'
       })
     }
 
-    res.status(200).json({
-      title: 'Logged in',
-      user: user
-    })
+    sendToken(user, 200, res)
+
   } catch (err) {
     res.status(500).json({
       title: 'error',
@@ -70,6 +66,14 @@ const forgotpassword = (req, res, next) => {
 
 const resetpassword = (req, res, next) => {
   res.send('Reset Password Route')
+}
+
+const sendToken = (user, status, res) => {
+  const token = user.getToken()
+  res.status(status).json({
+    title: 'Success',
+    token: token
+  })
 }
 
 export {register, login, forgotpassword, resetpassword}
