@@ -28,7 +28,7 @@ userSchema.methods.matchPasswords = async function(password) {
 }
 
 userSchema.methods.getToken = function() {
-  return jwt.sign({id: this._id}, 'secret_key', {expiresIn: '1h'})
+  return jwt.sign({id: this._id}, 'secret_key', {expiresIn: process.env.LOGIN_EXPIRES})
 }
 
 userSchema.methods.getResetPasswordToken = function() {

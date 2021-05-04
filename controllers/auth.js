@@ -1,4 +1,5 @@
 import User from '../models/user.model.js'
+import sendEmail from '../utils/sendEmail.js'
 
 const register = async (req, res, next) => {
   const {firstName, lastName, email, password} = req.body
@@ -67,7 +68,7 @@ const forgotpassword = async (req, res, next) => {
     const user = await User.findOne({email})
 
     if(!user) {
-      return res.status(404).json({
+      res.status(404).json({
         title: 'Email could not be sent'
       })
     }
@@ -76,21 +77,40 @@ const forgotpassword = async (req, res, next) => {
 
     await user.save()
 
-    const resetUrl = `http://localhost:3000/passwordreset/${resetPasswordToken}`
+    const resetUrl = `http://localhost:3000/user/passwordreset/${resetPasswordToken}`
 
     const message = `
       <h1>Password reset request</h1>
       <p>Click the link to change your password</p>
       <a href="${resetUrl}" clicktracking=off >Reset Password</a>
     `
+
     try {
-      
+      await sendEmail({
+        to: user.email,
+        subject: 'Password Reset Request',
+        text: message
+      })
+
+      res.status(200).json({
+        title: 'Email sent'
+      })
+
     } catch (error) {
-      
+      user.resetPasswordToken = undefined
+      user.resetExpiration = undefined
+
+      await user.save()
+
+      res.status(500).json({
+        title: 'Email could not be sent'
+      })
     }
     
   } catch (err) {
-    
+    res.status(500).json({
+      title: 'Email could not be sent'
+    })
   }
 }
 
