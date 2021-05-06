@@ -1,0 +1,50 @@
+import React, { useState } from 'react'
+
+const Login = (props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  return(
+    <div className="d-flex flex-column align-items-center px-2">
+      <h3>Login</h3>
+
+      <div className="w-100 mb-3">
+        <label>email</label>
+        <input
+          className="w-100 rounded border border-info p-2 mt-1" 
+          type="email"
+          value={email}
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <div className="w-100 mb-3">
+        <label>password</label>
+        <input
+          className="w-100 rounded border border-info p-2 mt-1" 
+          type="password"
+          value={password}
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+
+      <div className="d-flex w-100 justify-content-between align-items-center">
+        <div>
+          <p>Need an account? <span 
+              className="text-primary cursor"
+              onClick={props.renderRegister}
+            >Register</span>
+          </p>
+        </div>
+
+        <button
+          className="border border-success px-2 py-1 rounded bg-success text-white"
+        >Login</button>
+      </div>
+    </div>
+  )
+}
+
+export default Login

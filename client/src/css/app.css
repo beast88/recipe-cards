@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -100;
+
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 75% 50%;
+}
+
+.customwidth{
+  width: 85%;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.footnote {
+  font-size: 0.9rem;
+}
+
+@media screen and (min-width: 992px) {
+  .customwidth {
+    width: 50%;
+  }
+}
