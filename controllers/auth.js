@@ -1,5 +1,6 @@
 import User from '../models/user.model.js'
 import sendEmail from '../utils/sendEmail.js'
+import crypto from 'crypto'
 
 const register = async (req, res, next) => {
   const {firstName, lastName, email, password} = req.body
@@ -114,8 +115,37 @@ const forgotpassword = async (req, res, next) => {
   }
 }
 
-const resetpassword = (req, res, next) => {
-  res.send('Reset Password Route')
+const resetpassword = async (req, res, next) => {
+  const resetPasswordToken = crypto.createHash('sha256').update(req.params.resetToken).digest('hex')
+
+  try {
+    const user = User.findOne({
+      resetPasswordToken,
+      resetExpiration: { $get: Date.now()}
+    })
+
+    if(!user) {
+      res.status(400).json({
+        title: 'Invalid token'
+      })
+    }
+
+    user.password = req.body.password
+    user.resetPasswordToken = undefined
+    user.resetExpiration = undefined
+
+    await user.save()
+
+    res.status(201).json({
+      title: 'Password has been reset'
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      title: 'Error',
+      error: error
+    })    
+  }
 }
 
 const sendToken = (user, status, res) => {
