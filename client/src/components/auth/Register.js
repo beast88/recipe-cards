@@ -96,7 +96,7 @@ const Register = (props) => {
 
         <button
           className={`${isDisabled ? "bg-secondary" : "bg-success"} border border-success px-2 py-1 rounded text-white`}
-          disable={isDisabled}
+          disabled={isDisabled}
         >Register</button>
       </div>
     </div>
