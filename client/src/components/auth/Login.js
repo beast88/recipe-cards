@@ -1,8 +1,24 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 const Login = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const handleSubmit = () => {
+    axios.post('http://localhost:3001/user/login', {
+      email: email,
+      password: password
+    })
+    .then(res => {
+      localStorage.setItem('token', res.data.token)
+      window.location.href = '/dashboard'
+    })
+    .catch(err => {
+      setEmail('')
+      setPassword('')
+    })
+  }
 
   return(
     <div className="d-flex flex-column align-items-center px-2">
@@ -41,6 +57,7 @@ const Login = (props) => {
 
         <button
           className="border border-success px-2 py-1 rounded bg-success text-white"
+          onClick={handleSubmit}
         >Login</button>
       </div>
 
