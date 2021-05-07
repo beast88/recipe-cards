@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Register = (props) => {
   const [firstName, setFirstName] = useState('')
@@ -15,6 +16,26 @@ const Register = (props) => {
       setIsDisabled(true)
     }
   }, [password, confirmPassword])
+
+  const handleSubmit = () => {
+    axios.post('http://localhost:3001/user/register', {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+    })
+    .then(res => {
+      localStorage.setItem('token', res.data.token)
+      console.log(res.data)
+    })
+    .catch(err => {
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setPassword('')
+      setPassword('')
+    })
+  }
 
   return(
     <div className="d-flex flex-column align-items-center px-2">
@@ -97,6 +118,7 @@ const Register = (props) => {
         <button
           className={`${isDisabled ? "bg-secondary" : "bg-success"} border border-success px-2 py-1 rounded text-white`}
           disabled={isDisabled}
+          onClick={handleSubmit}
         >Register</button>
       </div>
     </div>
