@@ -6,10 +6,10 @@ const Login = (props) => {
 
   return(
     <div className="d-flex flex-column align-items-center px-2">
-      <h3>Login</h3>
+      <h3 className="mb-3">Login</h3>
 
       <div className="w-100 mb-3">
-        <label>email</label>
+        <label className="bolder">email</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="email"
@@ -20,7 +20,7 @@ const Login = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label>password</label>
+        <label className="bolder">password</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="password"
@@ -30,8 +30,8 @@ const Login = (props) => {
         />
       </div>
 
-      <div className="d-flex w-100 justify-content-between align-items-center">
-        <div>
+      <div className="d-flex w-100 justify-content-between align-items-center mb-2">
+        <div className="footnote">
           <p>Need an account? <span 
               className="text-primary cursor"
               onClick={props.renderRegister}
@@ -42,6 +42,13 @@ const Login = (props) => {
         <button
           className="border border-success px-2 py-1 rounded bg-success text-white"
         >Login</button>
+      </div>
+
+      <div className="d-flex w-100 justify-content-start footnote">
+        <p>Forgot your password? <span 
+          className="text-primary cursor"
+          onClick={props.renderForgotPassword}
+        >Click here</span></p>
       </div>
     </div>
   )

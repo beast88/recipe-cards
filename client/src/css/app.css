@@ -23,6 +23,10 @@ p {
   background-position: 75% 50%;
 }
 
+.bolder {
+  font-weight: 500;
+}
+
 .customwidth{
   width: 85%;
 }

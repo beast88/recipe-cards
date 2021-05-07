@@ -18,10 +18,10 @@ const Register = (props) => {
 
   return(
     <div className="d-flex flex-column align-items-center px-2">
-      <h3>Register</h3>
+      <h3 className="mb-3">Register</h3>
 
       <div className="w-100 mb-3">
-        <label>first name *</label>
+        <label className="bolder">first name *</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="text"
@@ -33,7 +33,7 @@ const Register = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label>last name *</label>
+        <label className="bolder">last name *</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="text"
@@ -45,7 +45,7 @@ const Register = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label>email *</label>
+        <label className="bolder">email *</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="email"
@@ -57,7 +57,7 @@ const Register = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label>password *</label>
+        <label className="bolder">password *</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="password"
@@ -69,7 +69,7 @@ const Register = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label>confirm password *</label>
+        <label className="bolder">confirm password *</label>
         <input
           className="w-100 rounded border border-info p-2 mt-1" 
           type="password"
@@ -85,7 +85,7 @@ const Register = (props) => {
       </div>
 
       <div className="d-flex w-100 justify-content-between align-items-center">
-        <div>
+        <div className="footnote">
           <p 
             className="text-primary cursor"
             onClick={props.renderLogin}
