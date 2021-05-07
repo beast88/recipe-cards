@@ -5,9 +5,9 @@ const ForgotPassword = (props) => {
   const [isDisabled, setIsDisabled] = useState(true)
 
   useEffect(() => {
-  if(email !== '') {
-    setIsDisabled(false)
-  }
+    if(email !== '') {
+      setIsDisabled(false)
+    }
   }, [email])
 
   return(
