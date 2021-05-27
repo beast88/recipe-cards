@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 const Login = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(false)
 
   const handleSubmit = () => {
     axios.post('http://localhost:3001/user/login', {
@@ -17,6 +18,7 @@ const Login = (props) => {
     .catch(err => {
       setEmail('')
       setPassword('')
+      setError(true)
     })
   }
 
@@ -61,12 +63,14 @@ const Login = (props) => {
         >Login</button>
       </div>
 
-      <div className="d-flex w-100 justify-content-start footnote">
+      <div className="d-flex w-100 justify-content-start footnote mb-3">
         <p>Forgot your password? <span 
           className="text-primary cursor"
           onClick={props.renderForgotPassword}
         >Click here</span></p>
       </div>
+
+      <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Invalid username/password</p>
     </div>
   )
 }

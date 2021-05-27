@@ -8,6 +8,14 @@ const Register = (props) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isDisabled, setIsDisabled] = useState(true)
+  const [error, setError] = useState(false)
+  const [shortPassword, setShortPassword] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+
+  const validateEmail = (email) => {
+    let re = /\S+@\S+\.\S+/
+    return re.test(email)
+  }
 
   useEffect(()=> {
     if(password === confirmPassword && password !== ''){
@@ -16,6 +24,22 @@ const Register = (props) => {
       setIsDisabled(true)
     }
   }, [password, confirmPassword])
+
+  useEffect(() => {
+    if(password !== '' && password.length < 6) {
+      setShortPassword(true)
+    } else {
+      setShortPassword(false)
+    }
+  }, [password])
+
+  useEffect(() => {
+    if(email !== '' && validateEmail(email) === false) {
+      setEmailError(true)
+    } else {
+      setEmailError(false)
+    }
+  }, [email])
 
   const handleSubmit = () => {
     axios.post('http://localhost:3001/user/register', {
@@ -34,6 +58,7 @@ const Register = (props) => {
       setEmail('')
       setPassword('')
       setPassword('')
+      setError(true)
     })
   }
 
@@ -68,7 +93,7 @@ const Register = (props) => {
       <div className="w-100 mb-3">
         <label className="bolder">email *</label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className={`w-100 rounded border ${!emailError ? "border-info" : "input-error border-danger"} p-2 mt-1`} 
           type="email"
           value={email}
           placeholder="email"
@@ -78,9 +103,9 @@ const Register = (props) => {
       </div>
 
       <div className="w-100 mb-3">
-        <label className="bolder">password *</label>
+        <label className="bolder">password *<span className="footnote text-secondary"> (min 6 characters)</span></label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className={`w-100 rounded border ${!shortPassword ? "border-info" : "input-error border-danger"} p-2 mt-1`} 
           type="password"
           value={password}
           placeholder="password"
@@ -105,7 +130,7 @@ const Register = (props) => {
         <p className="text-left text-secondary footnote">* required field</p>
       </div>
 
-      <div className="d-flex w-100 justify-content-between align-items-center">
+      <div className="d-flex w-100 justify-content-between align-items-center mb-3">
         <div className="footnote">
           <p 
             className="text-primary cursor"
@@ -121,6 +146,8 @@ const Register = (props) => {
           onClick={handleSubmit}
         >Register</button>
       </div>
+
+      <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Email has already been registered</p>
     </div>
   )
 }
