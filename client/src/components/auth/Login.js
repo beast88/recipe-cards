@@ -64,10 +64,10 @@ const Login = (props) => {
       </div>
 
       <div className="d-flex w-100 justify-content-start footnote mb-3">
-        <p>Forgot your password? <span 
-          className="text-primary cursor"
+        <p className="text-primary cursor"
           onClick={props.renderForgotPassword}
-        >Click here</span></p>
+        >
+        Forgot password?</p>
       </div>
 
       <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Invalid username/password</p>

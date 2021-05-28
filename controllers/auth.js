@@ -115,17 +115,18 @@ const forgotpassword = async (req, res, next) => {
 }
 
 const resetpassword = async (req, res, next) => {
-  const resetPasswordToken = crypto.createHash('sha256').update(req.params.resetToken).digest('hex')
+  const resetToken = crypto.createHash('sha256').update(req.params.resetToken).digest('hex')
 
   try {
-    const user = User.findOne({
-      resetPasswordToken,
-      resetExpiration: { $get: Date.now()}
+    const user = await User.findOne({
+      resetPasswordToken: resetToken,
+      resetExpiration: { $gt: Date.now() },
     })
 
     if(!user) {
       res.status(400).json({
-        title: 'Invalid token'
+        title: 'Invalid token',
+        message: 'User cannot be found'
       })
     }
 
@@ -142,7 +143,7 @@ const resetpassword = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({
       title: 'Error',
-      error: error
+      message: 'Something went wrong'
     })    
   }
 }
