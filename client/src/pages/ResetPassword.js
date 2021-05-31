@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const ResetPassword = ( {match} ) => {
@@ -7,6 +7,8 @@ const ResetPassword = ( {match} ) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isDisabled, setIsDisabled] = useState(true)
   const [shortPassword, setShortPassword] = useState(false)
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   useEffect(()=> {
     if(password === confirmPassword && password !== ''){
@@ -29,10 +31,18 @@ const ResetPassword = ( {match} ) => {
       password: password
     })
     .then(res => {
-      console.log(res)
+      setPassword('')
+      setConfirmPassword('')
+      setSuccess(true)
+
+      setTimeout(() => {
+        window.location.href = '/'
+      }, 5000)
     })
     .catch(err => {
-      console.log(err)
+      setPassword('')
+      setConfirmPassword('')
+      setError(true)
     })
   }
 
@@ -75,9 +85,14 @@ const ResetPassword = ( {match} ) => {
               >Update Password</button>
             </div>
 
+            <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Your request could not be completed at this time</p>
+
+            <p className={`text-success ${!success ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Password updated, you will be redirected to the Login page</p>
+
             <div className="d-flex w-100 justify-content-start">
               <Link to="/"><p className="text-info cursor">Login</p></Link>
             </div>
+
           </div>
         </div>
       </div>
