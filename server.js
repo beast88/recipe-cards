@@ -21,8 +21,10 @@ connection.once('open', () => {
 })
 
 import authRoutes from './routes/auth.js'
+import recipeRoutes from './routes/recipe.js'
 
 app.use('/user', authRoutes)
+app.use('/recipe', recipeRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`)
