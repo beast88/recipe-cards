@@ -18,7 +18,7 @@ const register = async (req, res, next) => {
   } catch (err) {
     res.status(500).json({
       title: 'Error',
-      error: err.message
+      error: err
     })    
   }
 }
@@ -56,7 +56,7 @@ const login = async (req, res, next) => {
   } catch (err) {
     res.status(500).json({
       title: 'error',
-      error: err.message
+      error: err
     })
   }
 }

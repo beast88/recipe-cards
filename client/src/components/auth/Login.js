@@ -12,7 +12,7 @@ const Login = (props) => {
       password: password
     })
     .then(res => {
-      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('Authorization', res.data.token)
       window.location.href = '/dashboard'
     })
     .catch(err => {
