@@ -62,6 +62,7 @@ const update = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   const userId = req.user._id
+  const userName = req.user.firstName
 
   try {
 
@@ -70,14 +71,16 @@ const read = async (req, res, next) => {
     if(!recipes) {
       res.status(204).json({
         title: 'Success',
-        data: null,
+        data: [],
+        user: userName,
         message: 'No recipes stored for this user'
       })
     }
 
     res.status(200).json({
       title: 'Success',
-      data: recipes
+      data: recipes,
+      user: userName
     })
     
   } catch (err) {

@@ -47,6 +47,10 @@ a {
   box-shadow: 0 0 6px red;
 }
 
+.dashboard-container {
+  background: #D5D5D5;
+}
+
 @media screen and (min-width: 992px) {
   .customwidth {
     width: 50%;
