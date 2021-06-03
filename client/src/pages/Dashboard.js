@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Header from '../components/dashboard/Header'
+import RecipeCard from '../components/recipes/RecipeCard'
 import Interface from '../components/recipes/Interface'
 
 const Dashboard = () => {
@@ -25,6 +26,12 @@ const Dashboard = () => {
   return(
     <div className="dashboard-container vh-100 vw-100">
       <Header user={user} />
+
+      <div className="d-flex mx-auto justify-content-around">
+        {recipes.map(card => {
+          return <RecipeCard recipe={card} key={card._id} />
+        })}
+      </div>
 
       <Interface />  
     </div>
