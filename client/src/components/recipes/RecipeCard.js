@@ -1,7 +1,7 @@
 import React from 'react'
 
 const RecipeCard = (props) => {
-  const {recipe, img} = props.recipe
+  const {recipe, img, _id} = props.recipe
 
   let background
 
@@ -10,7 +10,11 @@ const RecipeCard = (props) => {
   }
 
   return(
-    <div className="recipe-card p-3 d-flex align-items-end cursor" style={background}>
+    <div 
+      className="recipe-card p-3 d-flex align-items-end cursor mb-4 mx-1" 
+      style={background}
+      onClick={() => props.handleSelect(_id)}
+    >
       <h2 className="text-white">{recipe}</h2>
     </div>
   )

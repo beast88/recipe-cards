@@ -5,12 +5,38 @@
   font-family: 'Poppins', sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0, 0.5);
+}
+
 p {
   margin: 0;
 }
 
 a {
   text-decoration: none;
+}
+
+h4 {
+  margin: 0;
+}
+
+hr {
+  margin: 0.8rem 0.5rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 1rem;
 }
 
 .bg-img {
@@ -55,6 +81,35 @@ a {
   width: 300px;
   height: 350px;
   border-radius: 10px;
+}
+
+.close-card-btn {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+.fullcard-container {
+  background: #FBFBFB;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 10000;
+}
+
+.fullcard {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+}
+
+.frosted {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  height: 50%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 @media screen and (min-width: 992px) {
