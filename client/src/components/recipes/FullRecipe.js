@@ -25,18 +25,14 @@ const FullRecipe = (props) => {
         onClick={() => props.closeCard()}
       ><i className="fas fa-times"></i></button>
       
-      <div className="fullcard d-flex align-items-end p-3 rounded shadow-lg" style={background}>
-
-        <div className="frosted w-100 p-2 rounded">
-          <h4>{recipe}</h4>
-          <hr></hr>
-          <ul>
-            {list}
-          </ul>
-          <hr></hr>
-          <p>{method}</p>
-
+      <div className="fullcard rounded shadow-lg">
+        <div className="recipe-image rounded-top" style={background}>
         </div>
+
+        <div>
+          Stuff goes in here
+
+        </div>        
       </div>
     </section>
   )

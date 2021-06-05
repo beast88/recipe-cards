@@ -6,7 +6,7 @@ const RecipeCard = (props) => {
   let background
 
   if (img === "") {
-    background = {background: 'linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(15,57,37,0.8) 30%, rgba(25,135,84,1) 100%)'}
+    background = {background: 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'}
   }
 
   return(

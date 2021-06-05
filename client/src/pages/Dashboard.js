@@ -40,20 +40,22 @@ const Dashboard = () => {
   }
 
   return(
-    <div className="dashboard-container vh-100 vw-100">
-      <Header user={user} />
+    <div>
+      <div className="dashboard-container vw-100">
+        <Header user={user} />
 
-      <div className="d-flex mx-auto justify-content-around flex-wrap">
-        {recipes.map(card => {
-          return <RecipeCard 
-            recipe={card} 
-            key={card._id}
-            handleSelect={handleSelect}        
-          />
-        })}
+        <div className="d-flex mx-auto justify-content-around flex-wrap">
+          {recipes.map(card => {
+            return <RecipeCard 
+              recipe={card} 
+              key={card._id}
+              handleSelect={handleSelect}        
+            />
+          })}
+        </div>
+
+        <Interface />
       </div>
-
-      <Interface />
 
       <FullRecipe 
         details={selectedRecipe} 
