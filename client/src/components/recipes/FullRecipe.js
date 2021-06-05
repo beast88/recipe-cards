@@ -19,18 +19,24 @@ const FullRecipe = (props) => {
   }
 
   return (
-    <section className={`fullcard-container p-3 ${!visible ? "d-none" : "d-flex justify-content-center align-items-center"}`} >
+    <section className={`fullcard-container p-3 ${!visible ? "d-none" : "d-block"}`} >
       <button 
         className="btn btn-dark rounded-circle close-card-btn"
         onClick={() => props.closeCard()}
       ><i className="fas fa-times"></i></button>
       
-      <div className="fullcard rounded shadow-lg">
+      <div className="fullcard rounded shadow-lg m-auto mt-3">
         <div className="recipe-image rounded-top" style={background}>
         </div>
 
-        <div>
-          Stuff goes in here
+        <div className="p-4">
+          <h4>{recipe}</h4>
+          <hr></hr>
+          <ul>
+            {list}
+          </ul>
+          <hr></hr>
+          {method}
 
         </div>        
       </div>
