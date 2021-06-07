@@ -39,6 +39,16 @@ const Dashboard = () => {
     setShowRecipe(false)
   }
 
+  const handleDelete = (id) => {
+    const filtered = recipes.filter(recipe => {
+      return recipe._id !== id
+    })
+
+    setRecipes(filtered)
+    setSelectedRecipe({})
+    setShowRecipe(false)
+  }
+
   return(
     <div>
       <div className="dashboard-container vw-100">
@@ -61,6 +71,7 @@ const Dashboard = () => {
         details={selectedRecipe} 
         show={showRecipe}
         closeCard={closeCard}
+        handleDelete={handleDelete}
       />
     </div>
   )
