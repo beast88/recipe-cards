@@ -82,10 +82,19 @@ ul {
   border-radius: 10px;
 }
 
-.close-card-btn {
+.card-buttons {
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 10px;
+  width: 90px;
+}
+
+.card-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #212925;
+  color: #fff;
 }
 
 .fullcard-container {
