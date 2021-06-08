@@ -4,12 +4,14 @@ import Header from '../components/dashboard/Header'
 import RecipeCard from '../components/recipes/RecipeCard'
 import FullRecipe from '../components/recipes/FullRecipe'
 import Interface from '../components/recipes/Interface'
+import CreateRecipeForm from '../components/recipes/CreateRecipeForm'
 
 const Dashboard = () => {
   const [user, setUser] = useState('')
   const [recipes, setRecipes] = useState([])
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const [showRecipe, setShowRecipe] = useState(false)
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:3001/recipe/read', {
@@ -64,7 +66,9 @@ const Dashboard = () => {
           })}
         </div>
 
-        <Interface />
+        <Interface 
+          renderCreateForm={() => {setShowForm(true)}}
+        />
       </div>
 
       <FullRecipe 
@@ -73,6 +77,8 @@ const Dashboard = () => {
         closeCard={closeCard}
         handleDelete={handleDelete}
       />
+
+      {showForm ? <CreateRecipeForm /> : ''}
     </div>
   )
 }

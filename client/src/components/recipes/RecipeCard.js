@@ -11,7 +11,7 @@ const RecipeCard = (props) => {
 
   return(
     <div 
-      className="recipe-card p-3 d-flex align-items-end cursor mb-4 mx-1" 
+      className="recipe-card p-3 d-flex align-items-end cursor mb-4 mx-1 shadow" 
       style={background}
       onClick={() => props.handleSelect(_id)}
     >

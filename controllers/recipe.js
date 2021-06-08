@@ -106,7 +106,8 @@ const remove = async (req, res, next) => {
     }
 
     res.status(200).json({
-      title: 'Recipe removed'
+      title: 'Recipe removed',
+      data: recipe
     })
     
   } catch (err) {

@@ -112,7 +112,7 @@ ul {
   max-width: 500px;
 }
 
-.confirm-delete-container {
+.full-screen-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -128,6 +128,26 @@ ul {
 
 .recipe-image {
   height: 275px;
+}
+
+.custom-form-group label {
+  color: #bbb9c0;
+}
+
+.recipe-input {
+  border: none;
+  border-bottom:1px solid #bbb9c0;
+  outline: none;
+}
+
+.add-ingredient {
+  top: 12px;
+  right: -20px;
+}
+
+.textarea {
+  height: 150px;
+  border: none;
 }
 
 @media screen and (min-width: 920px) {

@@ -13,7 +13,7 @@ const ConfirmDelete = (props) => {
       }
     })
     .then(res => {
-      props.handleDelete(props.id)
+      props.handleDelete(res.data.data._id)
     })
     .catch(err => {
       alert('Session has timed out!')
@@ -22,7 +22,7 @@ const ConfirmDelete = (props) => {
   }
 
   return(
-    <div className="confirm-delete-container d-flex justify-content-center align-items-center">
+    <div className="full-screen-container d-flex justify-content-center align-items-center">
       <div className="confirm-delete bg-white shadow rounded p-3 d-flex flex-column align-items-center justify-content-around">
         <h3>Delete this recipe?</h3>
 
