@@ -53,10 +53,10 @@ const ResetPassword = ( {match} ) => {
           <div className="d-flex flex-column align-items-center px-2">
             <h3 className="mb-3">Reset Password</h3>
 
-            <div className="w-100 mb-3">
+            <div className="custom-form-group w-100 mb-3">
               <label className="bolder">new password<span className="footnote text-secondary"> (min 6 characters)</span></label>
               <input
-                className={`w-100 rounded border ${!shortPassword ? "border-info" : "input-error border-danger"} p-2 mt-1`} 
+                className={`input w-100 rounded ${!shortPassword ? "" : "input-error border border-danger"} p-2 mt-1`} 
                 type="password"
                 value={password}
                 placeholder="password"
@@ -65,10 +65,10 @@ const ResetPassword = ( {match} ) => {
               />
             </div>
 
-            <div className="w-100 mb-3">
+            <div className="custom-form-group w-100 mb-3">
               <label className="bolder">confirm new password</label>
               <input
-                className="w-100 rounded border border-info p-2 mt-1" 
+                className="input w-100 rounded p-2 mt-1" 
                 type="password"
                 value={confirmPassword}
                 placeholder="password"

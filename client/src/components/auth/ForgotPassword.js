@@ -10,6 +10,8 @@ const ForgotPassword = (props) => {
   useEffect(() => {
     if(email !== '') {
       setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
     }
   }, [email])
 
@@ -36,10 +38,10 @@ const ForgotPassword = (props) => {
         <p>Request a password reset email</p>
       </div>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">email</label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className="input w-100 rounded p-2 mt-1" 
           type="email"
           value={email}
           placeholder="email"

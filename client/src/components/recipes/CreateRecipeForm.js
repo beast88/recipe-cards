@@ -40,7 +40,7 @@ const CreateRecipeForm = () => {
           <div className="custom-form-group d-flex flex-column w-75 m-auto mb-4">
             <label className="mb-1">Name of recipe</label>
             <input 
-              className="recipe-input pt-1 px-2 pb-2"
+              className="input pt-1 px-2 pb-2"
               type="text"
               placeholder="Recipe"
               value={recipe}
@@ -57,7 +57,7 @@ const CreateRecipeForm = () => {
 
             <div className="position-relative w-100">
               <input 
-                className="recipe-input pt-1 px-2 pb-2 w-100"
+                className="input pt-1 px-2 pb-2 w-100"
                 type="text"
                 placeholder="Ingredient"
                 value={ingredient}
@@ -75,7 +75,7 @@ const CreateRecipeForm = () => {
           <div className="custom-form-group d-flex flex-column w-75 m-auto">
             <label className="mb-1">Directions</label>
             <textarea 
-              className="recipe-input textarea pt-1 px-2 pb-2"
+              className="input textarea pt-1 px-2 pb-2"
               type="text"
               placeholder="Cook up a storm"
               value={method}

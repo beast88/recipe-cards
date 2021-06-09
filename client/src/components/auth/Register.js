@@ -57,7 +57,7 @@ const Register = (props) => {
       setLastName('')
       setEmail('')
       setPassword('')
-      setPassword('')
+      setConfirmPassword('')
       setError(true)
     })
   }
@@ -66,34 +66,34 @@ const Register = (props) => {
     <div className="d-flex flex-column align-items-center px-2">
       <h3 className="mb-3">Register</h3>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">first name *</label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className="input w-100 rounded p-2 mt-1" 
           type="text"
           value={firstName}
-          placeholder="first name"
+          placeholder="John"
           required
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">last name *</label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className="input w-100 rounded p-2 mt-1" 
           type="text"
           value={lastName}
-          placeholder="last name"
+          placeholder="Smith"
           required
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">email *</label>
         <input
-          className={`w-100 rounded border ${!emailError ? "border-info" : "input-error border-danger"} p-2 mt-1`} 
+          className={`input w-100 rounded ${!emailError ? "" : "input-error border border-danger"} p-2 mt-1`} 
           type="email"
           value={email}
           placeholder="email"
@@ -102,10 +102,10 @@ const Register = (props) => {
         />
       </div>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">password *<span className="footnote text-secondary"> (min 6 characters)</span></label>
         <input
-          className={`w-100 rounded border ${!shortPassword ? "border-info" : "input-error border-danger"} p-2 mt-1`} 
+          className={`input w-100 rounded ${!shortPassword ? "" : "input-error border border-danger"} p-2 mt-1`} 
           type="password"
           value={password}
           placeholder="password"
@@ -114,10 +114,10 @@ const Register = (props) => {
         />
       </div>
 
-      <div className="w-100 mb-3">
+      <div className="custom-form-group w-100 mb-3">
         <label className="bolder">confirm password *</label>
         <input
-          className="w-100 rounded border border-info p-2 mt-1" 
+          className="input w-100 rounded p-2 mt-1" 
           type="password"
           value={confirmPassword}
           placeholder="password"
