@@ -154,6 +154,7 @@ const CreateRecipeForm = (props) => {
               :
               <label 
                 className="upload-btn cursor d-flex align-items-center justify-content-center"
+                htmlFor="imgUpload"
                 onClick={() => setImgPreview(null)}
               >
                 <span className="text-danger">Change Image</span>
