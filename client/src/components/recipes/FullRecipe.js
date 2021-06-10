@@ -3,7 +3,6 @@ import ConfirmDelete from './ConfirmDelete'
 
 const FullRecipe = (props) => {
   const {recipe, ingredients, method, img, _id} = props.details
-  const visible = props.show
   const [confirmDelete, setConfirmDelete] = useState(false)
 
   let background
@@ -26,7 +25,7 @@ const FullRecipe = (props) => {
   }
 
   return (
-    <section className={`fullcard-container p-3 ${!visible ? "d-none" : "d-block"}`} >
+    <section className="fullcard-container p-3" >
       
       <div className="fullcard rounded shadow-lg m-auto mt-3">
         <div className="recipe-image rounded-top position-relative" style={background}>
@@ -59,13 +58,11 @@ const FullRecipe = (props) => {
         </div>        
       </div>
 
-      {confirmDelete ? 
-      <ConfirmDelete 
+      {confirmDelete && <ConfirmDelete 
         handleCancel={() => {setConfirmDelete(false)}}
         id={_id}
         handleDelete={props.handleDelete}
-      /> 
-      : ""}
+      />}
     </section>
   )
 }

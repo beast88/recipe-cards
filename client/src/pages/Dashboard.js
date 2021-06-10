@@ -41,6 +41,10 @@ const Dashboard = () => {
     setShowRecipe(false)
   }
 
+  const closeForm = () => {
+    setShowForm(false)
+  }
+
   const handleDelete = (id) => {
     const filtered = recipes.filter(recipe => {
       return recipe._id !== id
@@ -65,20 +69,21 @@ const Dashboard = () => {
             />
           })}
         </div>
-
-        <Interface 
-          renderCreateForm={() => {setShowForm(true)}}
-        />
       </div>
 
-      <FullRecipe 
+      <Interface 
+          renderCreateForm={() => {setShowForm(true)}}
+        />
+
+      {showRecipe && <FullRecipe 
         details={selectedRecipe} 
-        show={showRecipe}
         closeCard={closeCard}
         handleDelete={handleDelete}
-      />
+      />}
 
-      {showForm ? <CreateRecipeForm /> : ''}
+      {showForm && <CreateRecipeForm
+          closeForm={closeForm}
+        />}
     </div>
   )
 }

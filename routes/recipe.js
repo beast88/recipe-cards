@@ -1,8 +1,8 @@
 import express from 'express'
 import { create, update, read, remove } from '../controllers/recipe.js'
 import protect from '../middleware/protect.js'
-import upload from '../controllers/imageUpload'
-import rewriter from '../middleware/rewriter'
+import { upload } from '../controllers/imageUpload.js'
+import rewriter from '../middleware/rewriter.js'
 
 const router = express.Router()
 
