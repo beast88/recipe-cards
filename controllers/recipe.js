@@ -1,7 +1,15 @@
 import Recipe from '../models/recipe.model.js'
 
 const create = async (req, res, next) => {
-  const {recipe, ingredients, method, img} = req.body
+  const {recipe, method} = req.body
+  const ingredients = JSON.parse(req.body.ingredients)
+  let img
+
+  if(req.file === undefined) {
+    img = ""
+  } else {
+    img = req.file.originalname
+  }
   const userId = req.user._id
 
   try {

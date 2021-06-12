@@ -2,11 +2,10 @@ import express from 'express'
 import { create, update, read, remove } from '../controllers/recipe.js'
 import protect from '../middleware/protect.js'
 import { upload } from '../controllers/imageUpload.js'
-import rewriter from '../middleware/rewriter.js'
 
 const router = express.Router()
 
-router.post('/create', protect, upload.single('image'), rewriter, create)
+router.post('/create', protect, upload.single('img'), create)
 
 router.get('/read', protect, read)
 

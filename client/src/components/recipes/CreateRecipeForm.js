@@ -6,6 +6,7 @@ const CreateRecipeForm = (props) => {
   const [ingredient, setIngredient] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [method, setMethod] = useState('')
+  const [fileName, setFileName] = useState('')
   const [imgPreview, setImgPreview] = useState(null)
   const [imageError, setImageError] = useState(false)
 
@@ -39,20 +40,42 @@ const CreateRecipeForm = (props) => {
     setIngredient('')
     setIngredients([])
     setMethod('')
+    setFileName('')
+    setImgPreview(null)
+    setImageError(false)
     props.closeForm()
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData()
+    let formData = new FormData()
 
     formData.append('recipe', recipe)
-    formData.append('ingredients', ingredients)
+    formData.append('ingredients', JSON.stringify(ingredients))
     formData.append('method', method)
+    formData.append('img', fileName)
+
+    for(let key of formData.keys()) {
+      console.log(key, formData.get(key))
+    }
+
+    axios.post('http://localhost:3001/recipe/create', formData, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(res => {
+      console.log(res.data.data)
+      handleClose()
+    })
+    .catch(err => {
+      console.log(err)
+    })
 
   }
 
   const handleImageChange = (e) => {
+    setFileName(e.target.files[0])
     const selected = e.target.files[0]
     const ALLOWED_TYPES = ['image/jpg', 'image/png', 'image/jpeg']
 
@@ -98,7 +121,7 @@ const CreateRecipeForm = (props) => {
 
         </div>
 
-        <form className="p-4" encType="multipart/form-date">
+        <form className="p-4" encType="multipart/form-date" onSubmit={(e) => handleSubmit(e)}>
           <div className="custom-form-group d-flex flex-column w-100 m-auto mb-4">
             <label className="mb-1">Name of recipe</label>
             <input 
@@ -113,8 +136,8 @@ const CreateRecipeForm = (props) => {
           <div className="custom-form-group d-flex flex-column w-100 m-auto mb-4">
             <label className="mb-1">Add ingredients</label>
 
-            {ingredients.length > 0 
-            ? <ul>{listIngredients}</ul>
+            {ingredients.length > 0 ? 
+              <ul>{listIngredients}</ul>
             : ''}
 
             <div className="position-relative w-100">
@@ -145,7 +168,7 @@ const CreateRecipeForm = (props) => {
             />
           </div>
 
-          <div className="custom-form-group d-flex flex-column align-items-center w-100 m-auto mb-2">
+          <div className="custom-form-group d-flex flex-column align-items-center w-100 m-auto mb-4">
 
             {!imgPreview ? 
               <label className="upload-btn cursor d-flex align-items-center justify-content-center" htmlFor="imgUpload">
@@ -160,14 +183,20 @@ const CreateRecipeForm = (props) => {
                 <span className="text-danger">Change Image</span>
               </label>
             }
-
             <input 
               id="imgUpload"
               className="d-none"
               type="file"
+              filename="img"
               onChange={handleImageChange}
             />
             {imageError && <p className="text-danger mt-2 text-center">File type is not supported</p>}
+          </div>
+
+          <div className="w-100 text-center">
+            <button type="submit" className="btn btn-success rounded-circle shadow">
+              <i className="fas fa-check"></i>
+            </button>
           </div>
 
         </form>

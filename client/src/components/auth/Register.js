@@ -96,7 +96,7 @@ const Register = (props) => {
           className={`input w-100 rounded ${!emailError ? "" : "input-error border border-danger"} p-2 mt-1`} 
           type="email"
           value={email}
-          placeholder="email"
+          placeholder="example@email.com"
           required
           onChange={(e) => setEmail(e.target.value)}
         />
