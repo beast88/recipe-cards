@@ -1,4 +1,5 @@
 import Recipe from '../models/recipe.model.js'
+import { uploadFile } from '../utils/s3.js'
 
 const create = async (req, res, next) => {
   const {recipe, method} = req.body
@@ -8,8 +9,13 @@ const create = async (req, res, next) => {
   if(req.file === undefined) {
     img = ""
   } else {
-    img = req.file.originalname
+    img = req.file.filename
+    
+    const result = await uploadFile(req.file)
+    console.log(result)
   }
+
+  // console.log(req.file)
   const userId = req.user._id
 
   try {
