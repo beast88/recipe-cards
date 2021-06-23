@@ -45,6 +45,12 @@ const Dashboard = () => {
     setShowForm(false)
   }
 
+  const addRecipe = (recipe) => {
+    setRecipes(prevState => {
+      return [...prevState, recipe]
+    })
+  }
+
   const handleDelete = (id) => {
     const filtered = recipes.filter(recipe => {
       return recipe._id !== id
@@ -83,6 +89,7 @@ const Dashboard = () => {
 
       {showForm && <CreateRecipeForm
           closeForm={closeForm}
+          addRecipe={addRecipe}
         />}
     </div>
   )
