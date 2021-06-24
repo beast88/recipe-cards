@@ -9,6 +9,12 @@ const FullRecipe = (props) => {
 
   if (img === "") {
     background = {background: 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'}
+  } else {
+    background = {
+      background: `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url(http://localhost:3001/recipe/images/${img}) no-repeat`,
+      backgroundSize: "cover",
+      backgroundPosition: "50%"
+    }
   }
 
   let list
