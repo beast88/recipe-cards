@@ -1,5 +1,5 @@
 import Recipe from '../models/recipe.model.js'
-import { uploadFile } from '../utils/s3.js'
+import { uploadFile, getFileStream } from '../utils/s3.js'
 
 const create = async (req, res, next) => {
   const {recipe, method} = req.body
@@ -105,6 +105,13 @@ const read = async (req, res, next) => {
   }
 }
 
+const getImages = async (req, res, next) => {
+  const key = req.params.key
+  const readStream = getFileStream(key)
+
+  readStream.pipe(res)
+}
+
 const remove = async (req, res, next) => {
   const {id} = req.body
   const userId = req.user._id
@@ -133,4 +140,4 @@ const remove = async (req, res, next) => {
 
 }
 
-export {create, update, read, remove}
+export {create, update, read, remove, getImages}
