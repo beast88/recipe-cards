@@ -1,5 +1,6 @@
 import Recipe from '../models/recipe.model.js'
 import { uploadFile, getFileStream } from '../utils/s3.js'
+import { unlinkFile } from '../utils/removeImg.js'
 
 const create = async (req, res, next) => {
   const {recipe, method} = req.body
@@ -11,8 +12,8 @@ const create = async (req, res, next) => {
   } else {
     img = req.file.filename
     
-    const result = await uploadFile(req.file)
-    console.log(result)
+    await uploadFile(req.file)
+    await unlinkFile(req.file.path)
   }
 
   // console.log(req.file)
@@ -107,8 +108,8 @@ const read = async (req, res, next) => {
 
 const getImages = async (req, res, next) => {
   const key = req.params.key
-  const readStream = getFileStream(key)
 
+  const readStream = getFileStream(key)
   readStream.pipe(res)
 }
 

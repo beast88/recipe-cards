@@ -7,7 +7,7 @@ const FullRecipe = (props) => {
 
   let background
 
-  if (img === "") {
+  if (img === "" || img === undefined) {
     background = {background: 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'}
   } else {
     background = {
