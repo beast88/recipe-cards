@@ -1,5 +1,5 @@
 import Recipe from '../models/recipe.model.js'
-import { uploadFile, getFileStream } from '../utils/s3.js'
+import { uploadFile, getFileStream, deleteFile } from '../utils/s3.js'
 import { unlinkFile } from '../utils/removeImg.js'
 
 const create = async (req, res, next) => {
@@ -125,6 +125,13 @@ const remove = async (req, res, next) => {
       res.status(404).json({
         title: 'No recipe found'
       })
+    }
+
+    //delete the image from s3 bucket
+    const fileName = recipe.img
+    
+    if(fileName !== "" || fileName !== undefined) {
+      await deleteFile(fileName)
     }
 
     res.status(200).json({
