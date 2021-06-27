@@ -128,9 +128,10 @@ const remove = async (req, res, next) => {
     }
 
     //delete the image from s3 bucket
-    const fileName = recipe.img
-    
+    let fileName = recipe.img
+
     if(fileName !== "" || fileName !== undefined) {
+      fileName = '1'
       await deleteFile(fileName)
     }
 
@@ -140,6 +141,7 @@ const remove = async (req, res, next) => {
     })
     
   } catch (err) {
+    console.log(err)
     res.status(500).json({
       title: 'Server error',
       error: err
