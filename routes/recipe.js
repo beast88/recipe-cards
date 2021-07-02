@@ -11,7 +11,7 @@ router.get('/read', protect, read)
 
 router.get('/images/:key', getImages)
 
-router.put('/update', protect, update)
+router.put('/update', protect, upload.single('img'), update)
 
 router.delete('/delete', protect, remove)
 

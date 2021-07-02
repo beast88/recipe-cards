@@ -16,7 +16,6 @@ const create = async (req, res, next) => {
     await unlinkFile(req.file.path)
   }
 
-  // console.log(req.file)
   const userId = req.user._id
 
   try {
@@ -44,7 +43,25 @@ const create = async (req, res, next) => {
 }
 
 const update = async (req, res, next) => {
-  const {recipe, ingredients, method, img, id} = req.body
+  const {recipe, method, id} = req.body
+  const ingredients = JSON.parse(req.body.ingredients)
+  const prevImg = req.body.prevImg
+  let img
+
+  if(req.file === undefined) {
+    img = prevImg
+  } else {
+    img = req.file.filename
+
+    await uploadFile(req.file)
+    await unlinkFile(req.file.path)
+
+    //Delete old image from S3
+    if(prevImg !== "") {
+      const fileName = prevImg
+      await deleteFile(fileName)
+    }
+  }
 
   try {
     const updateRecipe = await Recipe.findOne({_id: id})
@@ -128,10 +145,14 @@ const remove = async (req, res, next) => {
     }
 
     //delete the image from s3 bucket
-    let fileName = recipe.img
+    let fileName
+    if(recipe.img === "" || recipe.img === undefined) {
+      fileName = null
+    } else {
+      fileName = recipe.img
+    }
 
-    if(fileName !== "" || fileName !== undefined) {
-      fileName = '1'
+    if(fileName !== null) {
       await deleteFile(fileName)
     }
 

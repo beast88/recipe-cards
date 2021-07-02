@@ -43,6 +43,7 @@ const FullRecipe = (props) => {
             
             <button
               className="card-button rounded-circle shadow"
+              onClick={() => props.handleEdit()}
             ><i className="far fa-edit"></i></button>
 
             <button 

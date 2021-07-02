@@ -5,6 +5,7 @@ import RecipeCard from '../components/recipes/RecipeCard'
 import FullRecipe from '../components/recipes/FullRecipe'
 import Interface from '../components/recipes/Interface'
 import CreateRecipeForm from '../components/recipes/CreateRecipeForm'
+import EditRecipeForm from '../components/recipes/EditRecipeForm'
 
 const Dashboard = () => {
   const [user, setUser] = useState('')
@@ -12,6 +13,7 @@ const Dashboard = () => {
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const [showRecipe, setShowRecipe] = useState(false)
   const [showForm, setShowForm] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:3001/recipe/read', {
@@ -37,12 +39,22 @@ const Dashboard = () => {
     setShowRecipe(true)
   }
 
+  const handleEdit = () => {
+    setShowRecipe(false)
+    setShowEdit(true)
+  }
+
   const closeCard = () => {
     setShowRecipe(false)
   }
 
   const closeForm = () => {
     setShowForm(false)
+  }
+
+  const closeEditForm = () => {
+    setShowEdit(false)
+    setShowRecipe(true)
   }
 
   const addRecipe = (recipe) => {
@@ -59,6 +71,17 @@ const Dashboard = () => {
     setRecipes(filtered)
     setSelectedRecipe({})
     setShowRecipe(false)
+  }
+
+  const handleEditRecipe = (updatedRecipe) => {
+    const id = updatedRecipe._id
+    const updatedRecipes = recipes.map(recipe => {
+      return recipe._id === id ? updatedRecipe : recipe
+    })
+
+    setRecipes(updatedRecipes)
+    setSelectedRecipe(updatedRecipe)
+    closeEditForm() 
   }
 
   return(
@@ -84,13 +107,20 @@ const Dashboard = () => {
       {showRecipe && <FullRecipe 
         details={selectedRecipe} 
         closeCard={closeCard}
+        handleEdit={handleEdit}
         handleDelete={handleDelete}
       />}
 
       {showForm && <CreateRecipeForm
-          closeForm={closeForm}
-          addRecipe={addRecipe}
-        />}
+        closeForm={closeForm}
+        addRecipe={addRecipe}
+      />}
+
+      {showEdit && <EditRecipeForm 
+        selectedRecipe={selectedRecipe}
+        closeEditForm={closeEditForm}
+        handleEditRecipe={handleEditRecipe}
+      />}
     </div>
   )
 }
