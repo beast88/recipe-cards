@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Button from '../components/global/Button'
 
 const ResetPassword = ( {match} ) => {
   const [password, setPassword] = useState('')
@@ -78,11 +79,12 @@ const ResetPassword = ( {match} ) => {
             </div>
 
             <div className="d-flex w-100 justify-content-center align-items-center mb-3">
-              <button
-                className={`${isDisabled ? "bg-secondary" : "bg-success"} border border-success px-2 py-1 rounded text-white`}
-                disabled={isDisabled}
-                onClick={handleSubmit}
-              >Update Password</button>
+              <Button
+                handleClick={handleSubmit}
+                buttonType={'text'}
+                text={'Update Password'}
+                disable={isDisabled}  
+              />
             </div>
 
             <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Your request could not be completed at this time</p>

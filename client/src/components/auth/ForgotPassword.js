@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Button from '../global/Button'
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState('')
@@ -51,14 +52,15 @@ const ForgotPassword = (props) => {
       </div>
 
       <div className="d-flex w-100 justify-content-center align-items-center mb-3">
-        <button
-          className={`border border-success px-2 py-1 rounded ${isDisabled ? "bg-secondary" : "bg-success"} text-white`}
-          disabled={isDisabled}
-          onClick={handleSubmit}
-        >Send</button>
+        <Button
+          handleClick={handleSubmit}
+          buttonType={'text'}
+          text={'Send'}
+          disable={isDisabled} 
+        />
       </div>
 
-      <div className={`mb-3 footnote ${!confirmMessage ? "d-none" : "d-block"}`}>
+      <div className={`mb-3 text-center footnote ${!confirmMessage ? "d-none" : "d-block"}`}>
         <p>An email has been sent to you. If you do not see it immediately check your spam folder.</p>
       </div>
 

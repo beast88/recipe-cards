@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Button from '../global/Button'
 
 const Register = (props) => {
   const [firstName, setFirstName] = useState('')
@@ -140,11 +141,12 @@ const Register = (props) => {
           </p>
         </div>
 
-        <button
-          className={`${isDisabled ? "bg-secondary" : "bg-success"} border border-success px-2 py-1 rounded text-white`}
-          disabled={isDisabled}
-          onClick={handleSubmit}
-        >Register</button>
+        <Button
+          handleClick={handleSubmit}
+          buttonType={'text'}
+          text={'Register'}
+          disable={isDisabled} 
+        />
       </div>
 
       <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Email has already been registered</p>

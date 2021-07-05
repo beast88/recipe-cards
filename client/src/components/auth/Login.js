@@ -1,10 +1,19 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import Button from '../global/Button'
+import { useSpring, animated } from 'react-spring'
 
 const Login = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
+
+  const fade = useSpring({
+    from: {
+      opacity: 0
+    },
+    opacity: 1
+  })
 
   const handleSubmit = () => {
     axios.post('http://localhost:3001/user/login', {
@@ -23,7 +32,7 @@ const Login = (props) => {
   }
 
   return(
-    <div className="d-flex flex-column align-items-center px-2">
+    <animated.div className="d-flex flex-column align-items-center px-2" style={fade}>
       <h3 className="mb-3">Login</h3>
 
       <div className="custom-form-group w-100 mb-3">
@@ -57,10 +66,12 @@ const Login = (props) => {
           </p>
         </div>
 
-        <button
-          className="border border-success px-2 py-1 rounded bg-success text-white"
-          onClick={handleSubmit}
-        >Login</button>
+        <Button
+          handleClick={handleSubmit}
+          buttonType={'text'}
+          text={'Login'}
+          disable={false}
+        />
       </div>
 
       <div className="d-flex w-100 justify-content-start footnote mb-3">
@@ -71,7 +82,7 @@ const Login = (props) => {
       </div>
 
       <p className={`text-danger ${!error ? "d-none" : "d-block"}`}><i className="fas fa-exclamation"></i> Invalid username/password</p>
-    </div>
+    </animated.div>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Button from '../global/Button'
 
 const ConfirmDelete = (props) => {
 
@@ -27,15 +28,19 @@ const ConfirmDelete = (props) => {
         <h3>Delete this recipe?</h3>
 
         <div className="w-100 d-flex justify-content-around">
-          <button 
-            className="btn btn-danger shadow"
-            onClick={() => confirm()}                      
-          >Delete</button>
+          <Button
+            handleClick={confirm}
+            buttonType={'text-red'}
+            text={'Delete'}
+            disable={false}
+          />
 
-          <button 
-            className="btn btn-success shadow"
-            onClick={() => props.handleCancel()}
-          >Cancel</button>
+          <Button
+            handleClick={props.handleCancel}
+            buttonType={'text-green'}
+            text={'Cancel'}
+            disable={false}
+          />
         </div>
       </div>
     </div>

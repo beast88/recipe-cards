@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ConfirmDelete from './ConfirmDelete'
+import Button from '../global/Button'
 
 const FullRecipe = (props) => {
   const {recipe, ingredients, method, img, _id} = props.details
@@ -44,20 +45,26 @@ const FullRecipe = (props) => {
       <div className="fullcard rounded shadow-lg m-auto mt-3">
         <div className="recipe-image rounded-top position-relative" style={getStyle()}>
           <div className="card-buttons d-flex justify-content-between">
-          <button
-              className="card-button rounded-circle shadow"
-              onClick={() => setConfirmDelete(true)}
-            ><i className="far fa-trash-alt"></i></button>
-            
-            <button
-              className="card-button rounded-circle shadow"
-              onClick={() => props.handleEdit()}
-            ><i className="far fa-edit"></i></button>
+            <Button 
+              handleClick={() => setConfirmDelete(true)}
+              buttonType={'icon-dark'}
+              text={<i className="far fa-trash-alt"></i>}
+              disable={false}
+            />
 
-            <button 
-              className="card-button rounded-circle shadow"
-              onClick={() => handleClose()}
-            ><i className="fas fa-times"></i></button>
+            <Button 
+              handleClick={props.handleEdit}
+              buttonType={'icon-dark'}
+              text={<i className="far fa-edit"></i>}
+              disable={false}
+            />
+
+            <Button 
+              handleClick={handleClose}
+              buttonType={'icon-dark'}
+              text={<i className="fas fa-times"></i>}
+              disable={false}
+            />
           </div>
         </div>
 

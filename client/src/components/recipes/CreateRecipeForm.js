@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import Button from '../global/Button'
 
 const CreateRecipeForm = (props) => {
   const [recipe, setRecipe] = useState('')
@@ -112,11 +113,12 @@ const CreateRecipeForm = (props) => {
         <div className="recipe-image rounded-top position-relative" style={getStyle()}>
           
           <div className="card-buttons d-flex justify-content-end">
-            <button 
-                className="card-button rounded-circle shadow"
-                onClick={() => handleClose()}
-              ><i className="fas fa-times"></i>
-            </button>
+            <Button
+              handleClick={handleClose}
+              buttonType={'icon-dark'}
+              text={<i className="fas fa-times"></i>}
+              disable={false} 
+            />
           </div>
 
         </div>
@@ -194,9 +196,12 @@ const CreateRecipeForm = (props) => {
           </div>
 
           <div className="w-100 text-center">
-            <button type="submit" className="btn btn-success rounded-circle shadow">
-              <i className="fas fa-check"></i>
-            </button>
+            <Button
+              handleClick={handleSubmit}
+              buttonType={'icon-green'}
+              text={<i className="fas fa-check"></i>}
+              disable={false} 
+            />
           </div>
 
         </form>
