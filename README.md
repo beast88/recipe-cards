@@ -19,6 +19,7 @@ A simple recipe card web app built using the MERN stack. Simply sign up and star
 - React Router Dom
 - Bootstrap
 - Axios
+- React-Spring
 
 #### Backend
 

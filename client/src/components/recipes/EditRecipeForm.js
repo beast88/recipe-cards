@@ -111,7 +111,8 @@ const EditRecipeForm = (props) => {
       props.handleEditRecipe(res.data.data)
     })
     .catch(err => {
-      console.log(err)
+      alert('Could not complete request at this time. Please try again later')
+      handleClose()
     })
 
   }

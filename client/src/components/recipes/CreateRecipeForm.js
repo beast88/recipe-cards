@@ -90,22 +90,26 @@ const CreateRecipeForm = (props) => {
     }
   }
 
-  let background
+  const getStyle = () => {
+    let background
 
-  if(!imgPreview) {
-    background = {background: 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'}
-  } else {
-    background = {
-      background: `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url("${imgPreview}") no-repeat`,
-      backgroundSize: "cover",
-      backgroundPosition: "50%"
+    if(!imgPreview) {
+      background = {background: 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'}
+    } else {
+      background = {
+        background: `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url("${imgPreview}") no-repeat`,
+        backgroundSize: "cover",
+        backgroundPosition: "50%"
+      }
     }
+
+    return background
   }
 
   return(
     <section className="fullcard-container p-3">
       <div className="fullcard rounded shadow-lg m-auto mt-3">
-        <div className="recipe-image rounded-top position-relative" style={background}>
+        <div className="recipe-image rounded-top position-relative" style={getStyle()}>
           
           <div className="card-buttons d-flex justify-content-end">
             <button 
