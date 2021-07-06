@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Header from '../components/dashboard/Header'
 import RecipeCard from '../components/recipes/RecipeCard'
-import FullRecipe from '../components/recipes/FullRecipe'
 import Interface from '../components/recipes/Interface'
-import CreateRecipeForm from '../components/recipes/CreateRecipeForm'
-import EditRecipeForm from '../components/recipes/EditRecipeForm'
+import RecipeContainer from '../components/recipes/RecipeContainer'
+import {useTransition, animated} from 'react-spring'
 
 const Dashboard = () => {
   const [user, setUser] = useState('')
@@ -14,6 +13,19 @@ const Dashboard = () => {
   const [showRecipe, setShowRecipe] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
+  const [showContainer, setShowContainer] = useState(false)
+
+  const fadeIn = useTransition(showContainer, {
+    from: {
+      opacity: 0
+    },
+    enter: {
+      opacity: 1
+    },
+    leave: {
+      opacity: 0
+    }
+  })
 
   useEffect(() => {
     axios.get('http://localhost:3001/recipe/read', {
@@ -36,6 +48,7 @@ const Dashboard = () => {
     })
 
     setSelectedRecipe(selected)
+    setShowContainer(true)
     setShowRecipe(true)
   }
 
@@ -46,10 +59,17 @@ const Dashboard = () => {
 
   const closeCard = () => {
     setShowRecipe(false)
+    setShowContainer(false)
+  }
+
+  const renderForm = () => {
+    setShowContainer(true)
+    setShowForm(true)
   }
 
   const closeForm = () => {
     setShowForm(false)
+    setShowContainer(false)
   }
 
   const closeEditForm = () => {
@@ -71,6 +91,7 @@ const Dashboard = () => {
     setRecipes(filtered)
     setSelectedRecipe({})
     setShowRecipe(false)
+    setShowContainer(false)
   }
 
   const handleEditRecipe = (updatedRecipe) => {
@@ -101,26 +122,28 @@ const Dashboard = () => {
       </div>
 
       <Interface 
-          renderCreateForm={() => {setShowForm(true)}}
-        />
+        renderForm={renderForm}
+      />
 
-      {showRecipe && <FullRecipe 
-        details={selectedRecipe} 
-        closeCard={closeCard}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />}
-
-      {showForm && <CreateRecipeForm
-        closeForm={closeForm}
-        addRecipe={addRecipe}
-      />}
-
-      {showEdit && <EditRecipeForm 
-        selectedRecipe={selectedRecipe}
-        closeEditForm={closeEditForm}
-        handleEditRecipe={handleEditRecipe}
-      />}
+      {
+        fadeIn((styles, item) =>
+          item && <animated.section className="fullcard-container p-3" style={styles}>
+            <RecipeContainer
+              selectedRecipe={selectedRecipe}
+              showRecipe={showRecipe}
+              handleEdit={handleEdit}
+              closeCard={closeCard}
+              handleDelete={handleDelete}
+              showEdit={showEdit}
+              handleEditRecipe={handleEditRecipe}
+              closeEditForm={closeEditForm}
+              showForm={showForm}
+              addRecipe={addRecipe}
+              closeForm={closeForm}
+            />
+        </animated.section>
+        )
+      }
     </div>
   )
 }

@@ -6,7 +6,7 @@ const Interface = (props) => {
   return(
     <div className="text-center p-3 fixed-bottom shadow">
       <Button
-        handleClick={props.renderCreateForm}
+        handleClick={props.renderForm}
         buttonType={'icon-green'}
         text={<i className="fas fa-plus"></i>}
         disable={false} 
