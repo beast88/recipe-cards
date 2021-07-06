@@ -119,7 +119,7 @@ const EditRecipeForm = (props) => {
   }
 
   return(
-    <div className="fullcard rounded shadow-lg m-auto mt-3">
+    <div className="fullcard rounded shadow-lg mt-3 position-absolute">
       <div className="recipe-image rounded-top position-relative" 
         style={getStyle()}
       >

@@ -20,28 +20,46 @@ const RecipeContainer = ({
 
   const fullRecipeTransition = useTransition(showRecipe, {
     from: {
-      transform: 'translateY(100%)'
+      y: 500,
+      opacity: 0
     },
     enter: {
-      transform: 'translateY(0)'
+      y: 0,
+      opacity: 1
+    },
+    leave: {
+      y: -500,
+      opacity: 0
     }
   })
 
   const editTransition = useTransition(showEdit, {
     from: {
-      transform: 'translateY(100%)'
+      y: 500,
+      opacity: 0
     },
     enter: {
-      transform: 'translateY(0)'
+      y: 0,
+      opacity: 1
+    },
+    leave: {
+      y: -500,
+      opacity: 0
     }
   })
 
   const formTransition = useTransition(showForm, {
     from: {
-      transform: 'translateY(100%)'
+      y: 500,
+      opacity: 0
     },
     enter: {
-      transform: 'translateY(0)'
+      y: 0,
+      opacity: 1
+    },
+    leave: {
+      y: -500,
+      opacity: 0
     }
   })
 
@@ -49,7 +67,7 @@ const RecipeContainer = ({
     <>
       {
         fullRecipeTransition((styles, item) =>
-          item && <animated.div style={styles}>
+          item && <animated.div style={styles} className="px-3 position-relative">
             <FullRecipe 
               details={selectedRecipe} 
               closeCard={closeCard}
@@ -62,7 +80,7 @@ const RecipeContainer = ({
 
       {
         editTransition((styles, item) =>
-          item && <animated.div style={styles}>
+          item && <animated.div style={styles} className="px-3 position-relative">
             <EditRecipeForm 
               selectedRecipe={selectedRecipe}
               closeEditForm={closeEditForm}
