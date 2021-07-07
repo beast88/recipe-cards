@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Button from '../global/Button'
+import GetIngredients from '../global/GetIngredients'
+import { useSpring, animated } from 'react-spring'
+import { useMeasure } from 'react-use'
 
 const CreateRecipeForm = (props) => {
   const [recipe, setRecipe] = useState('')
@@ -10,6 +13,32 @@ const CreateRecipeForm = (props) => {
   const [fileName, setFileName] = useState('')
   const [imgPreview, setImgPreview] = useState(null)
   const [imageError, setImageError] = useState(false)
+
+  const defaultHeight = '10px'
+  const [open, toggle] = useState(false)
+  const [contentHeight, setContentHeight] = useState(defaultHeight)
+  const [ref, {height}] = useMeasure()
+
+  const expand = useSpring({
+    config: {friction: 20},
+    height: open ? `${contentHeight}px` : defaultHeight
+  })
+
+  useEffect(() => {
+    setContentHeight(height)
+
+    window.addEventListener("resize", setContentHeight(height))
+
+    return window.removeEventListener("resize", setContentHeight(height))
+  }, [height])
+
+  useEffect(() => {
+    if(ingredients.length > 0) {
+      toggle(true)
+    } else {
+      toggle(false)
+    }
+  }, [ingredients])
 
   const handleAddIngredient = () => {
     setIngredients((prevState) => {
@@ -26,15 +55,6 @@ const CreateRecipeForm = (props) => {
 
     setIngredients(filtered)
   }
-
-  let listIngredients = ingredients.map((ingredient, index) => {
-    return <li className="d-flex justify-content-between align-items-center" key={index}>{ingredient} 
-      <i 
-        className="fa fa-trash cursor"
-        onClick={() => handleRemoveIngredient(index)}
-      ></i>
-    </li>
-  })
 
   const handleClose = () => {
     setRecipe('')
@@ -137,9 +157,15 @@ const CreateRecipeForm = (props) => {
         <div className="custom-form-group d-flex flex-column w-100 m-auto mb-4">
           <label className="mb-1">Add ingredients</label>
 
-          {ingredients.length > 0 ? 
-            <ul>{listIngredients}</ul>
-          : ''}
+          <animated.div style={expand}>
+            <ul ref={ref} style={{overflowY: 'hidden'}}>
+              <GetIngredients 
+                ingredients={ingredients}
+                handleRemoveIngredient={handleRemoveIngredient}
+              />
+            </ul>
+          </animated.div>
+
 
           <div className="position-relative w-100">
             <input 

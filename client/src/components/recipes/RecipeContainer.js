@@ -30,7 +30,8 @@ const RecipeContainer = ({
     leave: {
       y: -500,
       opacity: 0
-    }
+    },
+    config: {friction: 10}
   })
 
   const editTransition = useTransition(showEdit, {
@@ -40,12 +41,13 @@ const RecipeContainer = ({
     },
     enter: {
       y: 0,
-      opacity: 1
+      opacity: 1,
     },
     leave: {
       y: -500,
       opacity: 0
-    }
+    },
+    config: {friction: 10}
   })
 
   const formTransition = useTransition(showForm, {
@@ -60,7 +62,8 @@ const RecipeContainer = ({
     leave: {
       y: -500,
       opacity: 0
-    }
+    },
+    config: {friction: 10}
   })
 
   return(

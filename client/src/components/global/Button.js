@@ -5,7 +5,8 @@ const Button = (props) => {
   const [isScaled, setIsScaled] = useState(false)
 
   const scale = useSpring({
-    transform: isScaled ? 'scale(1.15)' : 'scale(1)'
+    transform: isScaled ? 'scale(1.15)' : 'scale(1)',
+    config: {friction: 10}
   })
 
   const trigger = () => {
