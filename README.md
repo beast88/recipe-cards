@@ -8,8 +8,6 @@ Ever wanted a space to store all your favourite recipes? Well this is it!
 
 A simple recipe card web app built using the MERN stack. Simply sign up and start creating your own recipe cards.
 
-Although this app seems simple on the surface, I wanted it to be as close to a full production app for a client as I could. Therefore, this seemingly simple app quickly turned into something much bigger below the surface.
-
 ### Features
 
 ## Development
@@ -37,3 +35,5 @@ Although this app seems simple on the surface, I wanted it to be as close to a f
 - ESM
 
 ### Notes
+
+Although this app seems simple on the surface, I wanted it to be as close to a full production app for a client as I could. Therefore, this seemingly simple app quickly turned into something much bigger below the surface.

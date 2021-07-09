@@ -19,7 +19,8 @@ const Login = (props) => {
     leave: {
       opacity: 0
     },
-    duration: 700
+    duration: 700,
+    delay: 200
   })
 
   const handleSubmit = () => {

@@ -27,7 +27,8 @@ const Register = (props) => {
     leave: {
       opacity: 0
     },
-    duration: 700
+    duration: 700,
+    delay: 200
   })
 
   const validateEmail = (email) => {
