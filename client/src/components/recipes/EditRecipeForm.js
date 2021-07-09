@@ -58,15 +58,6 @@ const EditRecipeForm = (props) => {
     setIngredients(filtered)
   }
 
-  // let listIngredients = ingredients.map((ingredient, index) => {
-  //   return <li className="d-flex justify-content-between align-items-center" key={index}>{ingredient} 
-  //     <i 
-  //       className="fa fa-trash cursor"
-  //       onClick={() => handleRemoveIngredient(index)}
-  //     ></i>
-  //   </li>
-  // })
-
   const getStyle = () => {
     let background
 

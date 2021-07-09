@@ -12,14 +12,17 @@ function Landing() {
       return <Login 
         renderRegister={() => {setIsLogin(false)}}
         renderForgotPassword={() => {setIsForgotPassword(true)}}
+        isLogin={isLogin}
       />
     } else if(!isLogin && !isForgotPassword) {
       return <Register 
         renderLogin={() => {setIsLogin(true)}}
+        isLogin={isLogin}
       />
     } else if(isLogin && isForgotPassword) {
       return <ForgotPassword 
         renderLogin={() => {setIsForgotPassword(false)}}
+        isForgotPassword={isForgotPassword}
       />
     }
   }

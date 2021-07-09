@@ -21,8 +21,8 @@ Although this app seems simple on the surface, I wanted it to be as close to a f
 - React Router Dom
 - Bootstrap
 - Axios
-- React-Spring
-- React-Use
+- React-Spring - An animation library that helped me bring this project to life.
+- React-Use - This library was needed so I had easy access to the useMeasure hook to allow me to animate the heights of certain elements with react-spring.
 
 #### Backend
 
@@ -31,7 +31,9 @@ Although this app seems simple on the surface, I wanted it to be as close to a f
 - Node
 - Json Web Token
 - Crypto
-- Nodemailer
+- Nodemailer - This package gave me the ability to send emails to allow users to reset their password.
 - Multer
-- AWS-SDK
+- AWS-SDK - Allowed me to integrate with Amazon Web Services so that I could store images on the cloud.
 - ESM
+
+### Notes
