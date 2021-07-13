@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Header from '../components/dashboard/Header'
 import RecipeCard from '../components/recipes/RecipeCard'
 import Interface from '../components/recipes/Interface'
 import RecipeContainer from '../components/recipes/RecipeContainer'
-import {useTransition, animated} from 'react-spring'
+import { useTransition, animated } from 'react-spring'
 
 const Dashboard = () => {
   const [user, setUser] = useState('')
@@ -110,7 +110,7 @@ const Dashboard = () => {
       <div className="dashboard-container vw-100">
         <Header user={user} />
 
-        <div className="d-flex mx-auto justify-content-around flex-wrap">
+        <div className="d-flex mx-auto justify-content-around flex-wrap py-5 overflow-hidden">
           {recipes.map(card => {
             return <RecipeCard 
               recipe={card} 

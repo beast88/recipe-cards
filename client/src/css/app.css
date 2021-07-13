@@ -49,6 +49,10 @@ ul {
   background-position: 75% 50%;
 }
 
+.change-opacity {
+  will-change: opacity;
+}
+
 .bolder {
   font-weight: 500;
 }
@@ -79,6 +83,14 @@ ul {
   width: 300px;
   height: 350px;
   border-radius: 10px;
+}
+
+.recipe-card-bg {
+  border-radius: 10px;
+}
+
+.overflowX-hidden {
+  overflow-x: hidden;
 }
 
 .card-buttons {

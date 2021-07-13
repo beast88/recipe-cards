@@ -70,7 +70,7 @@ const RecipeContainer = ({
     <>
       {
         fullRecipeTransition((styles, item) =>
-          item && <animated.div style={styles} className="px-3 position-relative">
+          item && <animated.div style={styles} className="px-3 position-relative change-opacity">
             <FullRecipe 
               details={selectedRecipe} 
               closeCard={closeCard}
