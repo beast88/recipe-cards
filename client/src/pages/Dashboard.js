@@ -110,7 +110,7 @@ const Dashboard = () => {
       <div className="dashboard-container vw-100">
         <Header user={user} />
 
-        <div className="d-flex mx-auto justify-content-around flex-wrap py-5 overflow-hidden">
+        <div className="d-flex mx-auto justify-content-around flex-wrap">
           {recipes.map(card => {
             return <RecipeCard 
               recipe={card} 
