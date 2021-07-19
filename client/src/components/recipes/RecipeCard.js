@@ -2,9 +2,9 @@ import React, { useState, useRef } from 'react'
 import { useSpring, animated } from 'react-spring';
 
 const calc = (x, y, rect) => [
-  -(y - rect.top - rect.height / 2) / 9,
-  (x - rect.left - rect.width / 2) / 9,
-  1.1
+  -(y - rect.top - rect.height / 2) / 20,
+  (x - rect.left - rect.width / 2) / 20,
+  1.05
 ]
 
 const trans = (x, y, s) => 

@@ -38,11 +38,13 @@ const Register = (props) => {
 
   useEffect(()=> {
     if(password === confirmPassword && password !== ''){
-      setIsDisabled(false)
+      if(emailError === false) {
+        setIsDisabled(false)
+      }
     } else {
       setIsDisabled(true)
     }
-  }, [password, confirmPassword])
+  }, [password, confirmPassword, emailError])
 
   useEffect(() => {
     if(password !== '' && password.length < 6) {
