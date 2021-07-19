@@ -64,7 +64,7 @@ const EditRecipeForm = (props) => {
     if(imgPreview !== null) {
       background = `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url("${imgPreview}")`
     } else if(img !== "" && imgPreview === null) {
-      background = `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url(http://localhost:3001/recipe/images/${img})`
+      background = `linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, .85) 100%), url(/recipe/images/${img})`
     } else if(img === "" && imgPreview === null) {
       background = 'linear-gradient(0deg, rgba(50,50,50,1) 0%, rgba(15,57,37,1) 30%, rgba(25,135,84,1) 100%)'
     }
@@ -123,7 +123,7 @@ const EditRecipeForm = (props) => {
     formData.append('prevImg', img)
     formData.append('id', id)
 
-    axios.put('http://localhost:3001/recipe/update', formData, {
+    axios.put('/recipe/update', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }

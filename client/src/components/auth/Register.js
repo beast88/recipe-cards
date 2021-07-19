@@ -63,7 +63,7 @@ const Register = (props) => {
   }, [email])
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3001/user/register', {
+    axios.post('/user/register', {
       firstName: firstName,
       lastName: lastName,
       email: email,

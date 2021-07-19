@@ -33,7 +33,7 @@ const ForgotPassword = (props) => {
   }, [email])
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3001/user/forgotpassword', {
+    axios.post('/user/forgotpassword', {
       email: email
     })
     .then(res => {

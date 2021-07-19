@@ -28,7 +28,7 @@ const ResetPassword = ( {match} ) => {
   }, [password])
 
   const handleSubmit = () => {
-    axios.put(`http://localhost:3001/user/passwordreset/${match.params.resetToken}`, {
+    axios.put(`/user/passwordreset/${match.params.resetToken}`, {
       password: password
     })
     .then(res => {

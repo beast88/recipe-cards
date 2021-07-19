@@ -5,7 +5,7 @@ import Button from '../global/Button'
 const ConfirmDelete = (props) => {
 
   const confirm = () => {
-    axios.delete('http://localhost:3001/recipe/delete', {
+    axios.delete('/recipe/delete', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },

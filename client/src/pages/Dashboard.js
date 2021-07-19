@@ -28,7 +28,7 @@ const Dashboard = () => {
   })
 
   useEffect(() => {
-    axios.get('http://localhost:3001/recipe/read', {
+    axios.get('/recipe/read', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }

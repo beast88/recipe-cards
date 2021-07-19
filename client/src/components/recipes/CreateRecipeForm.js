@@ -76,7 +76,7 @@ const CreateRecipeForm = (props) => {
     formData.append('method', method)
     formData.append('img', fileName)
 
-    axios.post('http://localhost:3001/recipe/create', formData, {
+    axios.post('/recipe/create', formData, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }

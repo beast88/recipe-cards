@@ -24,7 +24,7 @@ const Login = (props) => {
   })
 
   const handleSubmit = () => {
-    axios.post('http://localhost:3001/user/login', {
+    axios.post('/user/login', {
       email: email,
       password: password
     })
