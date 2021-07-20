@@ -77,7 +77,7 @@ const forgotpassword = async (req, res, next) => {
 
     await user.save()
 
-    const resetUrl = `http://localhost:3000/user/passwordreset/${resetPasswordToken}`
+    const resetUrl = `https://cryptic-springs-38989.herokuapp.com/user/passwordreset/${resetPasswordToken}`
 
     const message = `
       <h1>Password reset request</h1>
