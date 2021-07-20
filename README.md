@@ -12,6 +12,10 @@ This project initially began as a place for me to store some of the recipes I've
 
 I used it as an opportunity to practice some advanced authentication features as well as getting my feet wet with some new libraries.
 
+View the live project here:
+
+[Live Project](https://cryptic-springs-38989.herokuapp.com/)
+
 ### Features
 
 #### Login/Registration
